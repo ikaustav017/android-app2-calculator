@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         Button buttonMultiply = (Button) findViewById(R.id.buttonMultiply);
         Button buttonMinus = (Button) findViewById(R.id.buttonMinus);
         Button buttonPlus = (Button) findViewById(R.id.buttonPlus);
+        Button buttonNeg = (Button) findViewById(R.id.buttonNeg);
+
 
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
@@ -99,7 +101,29 @@ public class MainActivity extends AppCompatActivity {
         buttonDivide.setOnClickListener(oplistener);
         buttonMultiply.setOnClickListener(oplistener);
 
+
+        View.OnClickListener neglistener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String value =  String.valueOf(newNumber.getText());
+                if(value.isEmpty()){
+                    newNumber.setText("-");
+                }else if("-".equalsIgnoreCase(value) || ".".equalsIgnoreCase(value)){
+                    newNumber.setText("");
+                }else{
+                    Double doubleVal = Double.valueOf(value) ;
+                    doubleVal*=-1.0;
+                    newNumber.setText(String.valueOf(doubleVal));
+                }
+            }
+        };
+
+        buttonNeg.setOnClickListener(neglistener);
+
     }
+
+
+
 
 
     @Override
